@@ -1,0 +1,3 @@
+/home/hmargalotti/CLionProjects/comp410Proj/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/home/hmargalotti/CLionProjects/comp410Proj/cmake-build-debug/CMakeFiles/comp410Proj.dir
+/home/hmargalotti/CLionProjects/comp410Proj/cmake-build-debug/CMakeFiles/edit_cache.dir

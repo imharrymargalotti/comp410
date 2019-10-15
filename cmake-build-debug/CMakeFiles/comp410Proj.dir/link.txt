@@ -1,0 +1,1 @@
+/usr/bin/c++  -g   CMakeFiles/comp410Proj.dir/main.cpp.o CMakeFiles/comp410Proj.dir/RBTree.cpp.o CMakeFiles/comp410Proj.dir/SplayTree.cpp.o  -o comp410Proj 

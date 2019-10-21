@@ -48,6 +48,7 @@ int * genDescData(int size){
     }
     return data;
 }
+
 int * loadFileToArray( std::string &fileName, int size) {
     std::ifstream data(fileName);
     std::string line;

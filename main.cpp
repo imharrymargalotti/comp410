@@ -74,7 +74,15 @@ int * loadFileToArray( std::string &fileName, int size) {
 }
 
 int main() {
-    std::string filename = "/home/hmargalotti/CLionProjects/comp410Proj/DescData.txt";
+    //first, lets pick out a file to read data in from 
+    //i.e. ascending data, descending data or random data
+    std::string filename = "";
+    
+    std::string dataType = ""; //this will be used in the output (just a string)
+    //should be: ascending, descending or random
+    
+    //lets allocate an array for the number of number we would like to test with
+    //i.e. 10,000 | 50,000 | 100,000 | 200,000 ... 900,000 | 1,000,000
     int * count = new int[12];
     count[0] = 10000;
     count[1] = 50000;
@@ -82,30 +90,37 @@ int main() {
     for (int x = 2; x<=12; x++){
         count[x] = (x-1) * 100000;
     }
-
-    std::cout<<"desc data test: "<<std::endl;
-    for (int x = 0; x < 12; x++) {
+    //now that the array of sizes is populated, lets print some output to clarify what we're doing
+    std::cout<< dataType << " data test: "<<std::endl;
+    for (int x = 0; x < 12; x++) { //lets iterate through the number of numbers to insert
         std::cout<<"testing for size: " << count[x] << std::endl;
         int sizeForTest = count[x];
+        //lets load 'x' numbers into an array from the file specified above
         int *testData = loadFileToArray(filename, sizeForTest);
 
         RBTree *sTree = new RBTree();
         auto runtime = 0;
+        //lets run the test 5 times (1-6 [exclusive]) to get more data
         int runs = 6;
         for (int x = 1; x < runs; x++) {
+            //lets grab the time using chrono
             auto begin = chrono::high_resolution_clock::now();
             for (int i = 0; i < sizeForTest; i++) {
+                //do the insertion
                 sTree->insertValue(testData[i]);
             }
+            //now that insertion is complete lets grab the time again
             auto end = chrono::high_resolution_clock::now();
-
+            
+            //lets do a trvial calculation to get the elapsed time of the test
             auto dur = end - begin;
-
+            //lets convert that duration to miliseconds
             auto ms = std::chrono::duration_cast<std::chrono::milliseconds>(dur).count();
-            runtime += ms;
+            runtime += ms; //store the total time in miliseconds in runtime
+            //lets print the results to stdout
             cout << "Duration for run" << x << ": " << ms << "ms" << std::endl;
         }
-
+        //after a test has run 5 times lets take an average for the most accurate data
         cout << "Average time: " << runtime / (runs - 1);
         std::cout<<"\n\n";
     }
